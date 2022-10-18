@@ -1,80 +1,200 @@
 import { useState } from "react";
+import RectangleBg from "./asset/RectangleBg.svg";
+import Rectangle from "./asset/Rectangle.svg";
+import Logo from "./asset/logo.svg";
+import directory from "./asset/directory.svg";
+import backup from "./asset/backup.svg";
+import database from "./asset/database.svg";
+import login from "./asset/login.svg";
+import log from "./asset/log.svg";
+import config from "./asset/config.svg";
+import wordpress from "./asset/wordpress.svg";
 
 function App() {
   const [link, setLink] = useState("");
+  const isMobile = window.innerWidth > 768;
   return (
-    <div className="bg-gray-900 text-white h-screen">
-      <div class="flex justify-center ">
-        <div class="mb-3 w-96 float-right my-7">
-          <div class="input-group relative flex flex-row items-stretch w-full mb-4 rounded">
-            <input
-              type="search"
-              class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              placeholder="Enter Target Domain"
-              aria-label="Search"
-              aria-describedby="button-addon2"
-              typeof="text"
-              value={link}
-              onChange={(e) => setLink(e.target.value)}
-            />
-            <span
-              class="input-group-text flex items-center px-3 py-1.5 text-base font-normal text-gray-700 text-center whitespace-nowrap rounded"
-              id="basic-addon2"
-              onClick={() => {
-                console.log(link);
-              }}
-            >
-              <svg
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fas"
-                data-icon="search"
-                class="w-4"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  fill="white"
-                  d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
-                ></path>
-              </svg>
-            </span>
+    <>
+      <div >
+        <div className=" text-white pb-20 p-4" style={{
+          backgroundImage: isMobile ? `url(${RectangleBg})` : `url(${Rectangle})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}>
+          <div className="flex justify-start top-0">
+            <img src={Logo} alt="logo" />
           </div>
-        </div>
-      </div>
-      {/* dashboard with card */}
-      <div class="flex justify-center">
-        <div class="grid grid-cols-3 gap-4">
-          <div class="bg-gray-800 rounded-lg p-4">
-            <div class="flex flex-row items-center">
-              <div class="flex-shrink pr-4">
-                <div class="rounded-full p-5 bg-green-500"></div>
-              </div>
-              <div
-                class="flex-1 text-right md:text-center cursor-pointer"
-                onClick={() => {
-                  console.log("clicked");
-                  // google search link
-                  // remove https:// from link
-                  window.open(
-                    "https://www.google.com/search?q=" +
-                      'allinurl:"Index Of" site:' +
-                      link.replace("https://", ""),
-                    "_blank"
-                  );
-                }}
-              >
-                <h5 class="font-bold uppercase text-gray-500">
-                  Directory Listing
-                </h5>
-                {/* <h3 class="font-bold text-3xl text-gray-600">500</h3> */}
-              </div>
+          <div className="flex justify-center ">
+            <div className=" w-2/5 float-right my-9">
+              <form>
+                <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+                <div className="relative">
+                  <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                  </div>
+                  <input type="search" id="default-search" className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-3xl border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Target Domain"
+                    aria-label="Search"
+                    aria-describedby="button-addon2"
+                    typeof="text"
+                    value={link}
+                    onChange={(e) => setLink(e.target.value)} />
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </div>
+
+        <div className="flex justify-center pt-7">
+
+          <div className="grid grid-cols-4 gap-6" >
+
+            <div class="flex justify-center cursor-pointer" onClick={() => {
+              window.open(
+                "https://www.google.com/search?q=" +
+                'allinurl:"Index Of" site:' +
+                link.replace("https://", ""),
+                "_blank"
+              );
+            }} style={{
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              borderRadius: "10px",
+
+            }}>
+              <div class=" bg-white max-w-sm">
+                <div class="flex justify-center p-5">
+                  <img src={directory} alt="directory" width={60} />
+                </div>
+                <div class="p-6">
+                  <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Directory Listing</h5>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center cursor-pointer" onClick={() => {
+              window.open(
+                "https://www.google.com/search?q=" +
+                'site:' + link.replace("https://", "") + ' ext:xml | ext:conf | ext:cnf | ext:reg | ext:inf | ext:rdp | ext:cfg | ext:txt | ext:ora | ext:ini', "_blank"
+              );
+            }} style={{
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              borderRadius: "10px",
+              margin: "10px",
+
+            }}>
+              <div class=" bg-white max-w-sm">
+                <div class="flex justify-center p-5">
+                  <img src={config} alt="directory" width={60} />
+                </div>
+                <div class="p-6">
+                  <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Configuration Files</h5>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center cursor-pointer" onClick={() => {
+              window.open(
+                "https://www.google.com/search?q=" +
+                'site:' + link.replace("https://", "") + ' ext:sql | ext:dbf | ext:mdb', "_blank"
+              );
+            }} style={{
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              borderRadius: "10px",
+              margin: "10px",
+
+            }}>
+              <div class=" bg-white max-w-sm">
+                <div class="flex justify-center p-5">
+                  <img src={database} alt="directory" width={60} />
+                </div>
+                <div class="p-6">
+                  <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Database Files</h5>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center cursor-pointer" onClick={() => {
+              window.open(
+                "https://www.google.com/search?q=" +
+                'site:' + link.replace("https://", "") + ' inurl:wp- | inurl:wp-content | inurl:plugins | inurl:uploads | inurl:themes | inurl:download', "_blank"
+              );
+            }} style={{
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              borderRadius: "10px",
+              margin: "10px",
+
+            }}>
+              <div class=" bg-white max-w-sm">
+                <div class="flex justify-center p-5">
+                  <img src={wordpress} alt="directory" width={60} />
+                </div>
+                <div class="p-6">
+                  <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">wordPress</h5>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center cursor-pointer" onClick={() => {
+              window.open(
+                "https://www.google.com/search?q=" +
+                'site:' + link.replace("https://", "") + ' ext:log', "_blank"
+              );
+            }} style={{
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              borderRadius: "10px",
+              margin: "10px",
+
+            }}>
+              <div class=" bg-white max-w-sm">
+                <div class="flex justify-center p-5">
+                  <img src={log} alt="directory" width={60} />
+                </div>
+                <div class="p-6">
+                  <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Log Files</h5>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center cursor-pointer" onClick={() => {
+              window.open(
+                "https://www.google.com/search?q=" +
+                'site:' + link.replace("https://", "") + ' ext:bkf | ext:bkp | ext:bak | ext:old | ext:backup', "_blank"
+              );
+            }} style={{
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              borderRadius: "10px",
+              margin: "10px",
+
+            }}>
+              <div class=" bg-white max-w-sm">
+                <div class="flex justify-center p-5">
+                  <img src={backup} alt="directory" width={60} />
+                </div>
+                <div class="p-6">
+                  <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Backup and Old Files</h5>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center cursor-pointer" onClick={() => {
+              window.open(
+                "https://www.google.com/search?q=" +
+                'site:' + link.replace("https://", "") + ' inurl:login', "_blank"
+              );
+            }} style={{
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              borderRadius: "10px",
+              margin: "10px",
+
+            }}>
+              <div class=" bg-white max-w-sm">
+                <div class="flex justify-center p-5">
+                  <img src={login} alt="directory" width={60} />
+                </div>
+                <div class="p-6">
+                  <h5 class="text-gray-900 text-xl font-medium mb-2 text-center">Login Pages</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
     </div>
+    </>
   );
 }
 
